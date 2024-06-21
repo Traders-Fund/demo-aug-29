@@ -1,21 +1,17 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors')
+
+import colors from "tailwind-colors";
+// console.log(colors.red[500]); // #ed8936
 
 module.exports = {
   content: ["./src/templates/**/*.{html,js}"],
   theme: {
-    colors: {
-      white: colors.white,
-      black: colors.black,
-      cfe: "#007cae",
-      cfeBlue: {
-        100: "#007cad"
+    extend: {
+      colors: {
+        // Include all Tailwind CSS colors
+        ...colors,
       },
-      stone: colors.stone,
-      sky: colors.sky,
-      violet: colors.violet,
     },
-    extend: {},
   },
   plugins: [],
-}
+};

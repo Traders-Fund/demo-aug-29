@@ -4,7 +4,9 @@ import colors from "tailwind-colors";
 // console.log(colors.red[500]); // #ed8936
 
 module.exports = {
-  content: ["./src/templates/**/*.{html,js}"],
+  content: ["./src/templates/**/*.{html,js}",
+     "./node_modules/flowbite/**/*.js"
+  ],
   theme: {
     extend: {
       colors: {
@@ -13,5 +15,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 };

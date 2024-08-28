@@ -87,10 +87,10 @@ WSGI_APPLICATION = 'cfehome.wsgi.application'
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'fundhancedbfull',
+    'NAME': 'fundhancedb',
     'USER': 'fundhancedb_owner',
     'PASSWORD': 'RdirsP5hN2kc',
-    'HOST': 'ep-round-bird-a2n4c50k.eu-central-1.aws.neon.tech',
+    'HOST': 'ep-crimson-dew-a26xrquh.eu-central-1.aws.neon.tech',
     'PORT': 5432,
     'OPTIONS': {
       'sslmode': 'require',

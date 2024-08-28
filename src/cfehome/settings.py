@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'cfehome.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
- DATABASES = {
+DATABASES = {
   'default': {
      'ENGINE': 'django.db.backends.postgresql',
      'NAME': 'fundhancedb2',

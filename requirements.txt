@@ -8,6 +8,7 @@ gevent==24.2.1
 greenlet==3.0.3
 idna==3.8
 pipenv==2024.0.0
+psycopg==3.2.1
 regex==2024.5.15
 requests==2.32.3
 setuptools==73.0.1

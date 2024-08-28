@@ -90,8 +90,8 @@ DATABASES = {
     'NAME': 'fundhancedb',
     'USER': 'fundhancedb_owner',
     'PASSWORD': 'RdirsP5hN2kc',
-    'HOST': 'ep-crimson-dew-a26xrquh.eu-central-1.aws.neon.tech',
-    'PORT': 5432,
+    'HOST': 'ep-round-bird-a2n4c50k.eu-central-1.aws.neon.tech',
+    'PORT':  5432,
     'OPTIONS': {
       'sslmode': 'require',
     },

@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import User
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from django.contrib.auth.models import Group
 
 class UserAdmin(BaseUserAdmin):
     model = User
@@ -26,3 +27,4 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('email',)
 
 admin.site.register(User, UserAdmin)
+admin.site.unregister(Group)

@@ -1,0 +1,114 @@
+
+/* SUCCESS BTN which is purple, actually */
+.btn-success-custom {
+    background: linear-gradient(to bottom right, #7c3aed, #3b82f6);
+    color: white !important; 
+border-radius: 0.5rem !important;
+    border: none !important;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px!important;
+    margin-right: 0.125rem !important;
+
+}
+
+
+.btn-success-custom:hover {
+    background: linear-gradient(to bottom left, #7c3aed, #3b82f6);
+    color: white !important; 
+    border: none !important; ;
+}
+
+.btn-success-custom:focus {
+    outline: none !important;  ;
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.3);
+    color: white !important;  
+
+}
+
+/* Custom style for DANGER BTN */
+.btn-danger-custom {
+    border-radius: 0.5rem !important;
+    border: none!important;
+    background-color: #ef4444!important;;
+
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px!important;
+    color: white!important;
+  
+}
+.btn-danger-custom:hover {
+    border-radius: 0.5rem !important;
+    background-color: #b91c1c!important;;
+    color: white!important;
+    transition: none!important;
+  
+}
+/* Custom style for DANGER BTN */
+
+/* Custom style for INFO BTN */
+
+.btn-info-custom {
+    background-image: linear-gradient(to right, #06b6d4, #3b82f6)!important;
+    border: none!important;
+    border-radius: 0.5rem!important;
+    margin-left: 0.125rem!important;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px!important;
+    color: white!important;
+    transition: background-image 0.1s ease-in-out, box-shadow 0.1s ease-in-out!important;
+}
+
+.btn-info-custom:hover {
+    background-image: linear-gradient(to bottom left, #06b6d4, #3b82f6)!important;
+}
+
+.btn-info-custom:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  
+    box-shadow: 0 0 0 4px rgba(103, 232, 249, 0.5)!important;
+}
+/* Custom style for INFO BTN */
+/* BUTTON btn-outline-primary */
+
+.btn-outline-primary-custom {
+
+    background-image: linear-gradient(to right, #06b6d4, #3b82f6)!important;
+    border: none!important;
+    border-radius: 0.5rem!important;
+    margin-left: 0.125rem!important;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px!important;
+    color: white!important;
+    transition: background-image 0.1s ease-in-out, box-shadow 0.1s ease-in-out!important;
+
+}
+/* BUTTON btn-outline-primary */
+
+/* Custom style for  btn-outline-secondary */
+.btn-outline-secondary {
+   border-radius: 0.5rem!important;
+   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px!important;
+       transition: background-image 0.1s ease-in-out, box-shadow 0.1s ease-in-out!important;
+
+  
+}
+/* Custom style for  btn-outline-secondary */
+
+
+/* Custom style for active sidebar link */
+.sidebar-dark-indigo .nav-link.active {
+    background: linear-gradient(to right, #3b82f6, #7c3aed)!important; /* Gradient for active link */
+    color: white !important;
+    transition: background 0.1s ease-in-out !important; /* Fade effect */
+}
+
+
+/* Custom style for hover state */
+.sidebar-dark-indigo .nav-link:hover {
+   
+    color: white !important;
+}
+
+/* Ensuring default state doesn't have gradient */
+.sidebar-dark-indigo .nav-link {
+  
+
+    transition: background 0.1s ease-in-out !important;/* Smooth transition */
+}

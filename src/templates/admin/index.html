@@ -1,0 +1,166 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static jazzmin %}
+
+{% block bodyclass %}
+  {{ block.super }} dashboard
+{% endblock %}
+
+{% block content_title %}
+  {% trans 'Dashboard' %}
+{% endblock %}
+
+{% block breadcrumbs %}
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
+    <li class="breadcrumb-item">{% trans 'Dashboard' %}</li>
+  </ol>
+{% endblock %}
+
+{% block content %}
+  {% get_side_menu using="app_list" as dashboard_list %}
+  {% if dashboard_list %}
+    {% widthratio dashboard_list|length 2 1 as middle %}
+  {% endif %}
+
+  <style>
+    .equal-height {
+      display: flex;
+      flex-direction: column;
+    }
+    .equal-height > .card {
+      flex-grow: 1;
+      margin-bottom: 1rem;
+    }
+    .equal-height > .card:last-child {
+      margin-bottom: 0;
+    }
+
+  </style>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-9 col-12">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            {% for app in dashboard_list %}
+              <div class="mb-3 card" style=" border-radius: 0.75rem!important; border: 1px solid #e5e7eb; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);">
+                <div class="card-header" style="margin-bottom: -0.5rem; border-radius: 0.75rem; border-bottom: none; background-color: white">
+                  <h5 style="font-weight: 600;" class="m-0">{{ app.name }}</h5>
+                </div>
+                <div class="card-body">
+                  <table class="table table-sm">
+                    <tbody>
+                      {% for model in app.models %}
+                        <tr>
+                          <td>
+                            {% if model.url %}
+                              <a style="font-size: 1.1rem;" href="{{ model.url }}">{{ model.name }}</a>
+                            {% else %}
+                              {{ model.name }}
+                            {% endif %}
+                          </td>
+                          <td>
+                            <div class="float-right btn-group">
+                              {% if model.add_url %}
+                                <a href="{{ model.add_url }}" class="btn my-4 btn-xs {{ jazzmin_ui.button_classes.success }} addlink">{% trans 'Add' %}</a>
+                              {% endif %}
+                              {% if model.url %}
+                                {% if model.view_only %}
+                                  <a href="{{ model.url }}" class="btn my-4 btn-xs {{ jazzmin_ui.button_classes.info }} viewlink">{% trans 'View' %}</a>
+                                {% else %}
+                                  <a href="{{ model.url }}" class="btn my-4 btn-xs {{ jazzmin_ui.button_classes.info }} changelink">{% if model.custom %} {% trans 'Go' %}{% else %}{% trans 'Change' %}{% endif %}</a>
+                                {% endif %}
+                              {% endif %}
+                            </div>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div> <!-- card-body -->
+              </div> <!-- card -->
+
+              {% if forloop.counter == middle|add:"0" %}
+                </div><!-- closing col-md-6 -->
+                <div class="col-md-6 col-sm-12">
+              {% endif %}
+
+            {% endfor %}
+          </div><!-- closing col-md-6 -->
+
+          <!-- All Dashboard Cards -->
+         
+             
+
+          <!-- Row of Charts -->
+        
+        </div> <!-- row -->
+      </div> <!-- col-lg-9 -->
+
+      <!-- Sidebar for Recent Actions -->
+      <div class="col-lg-3 col-12">
+        <div id="content-related">
+          <div class="module" id="recent-actions-module">
+            <h4 class="mb-3">{% trans 'Recent actions' %}</h4>
+            {% load log %}
+            {% get_admin_log 6 as admin_log for_user user %}
+            {% if not admin_log %}
+              <p>{% trans 'None available' %}</p>
+            {% else %}
+              <div class="timeline">
+                {% for entry in admin_log %}
+                  <div>
+                    {% if entry.is_change %}
+                      <i class="text-xs fas fa-edit bg-gray"></i>
+                    {% elif entry.is_deletion %}
+                      <i class="text-xs fas fa-trash bg-danger"></i>
+                    {% elif entry.is_addition %}
+                      <i class="text-xs fas fa-plus-circle bg-success"></i>
+                    {% endif %}
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fas fa-clock"></i> {% blocktrans with timesince=entry.action_time|timesince %}{{ timesince }} ago{% endblocktrans %}</span>
+                      <h3 class="timeline-header no-border">
+                        {% if entry.is_deletion or not entry.get_admin_url %}
+                          {{ entry.object_repr }}
+                        {% else %}
+                          <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                        {% endif %}
+
+                        {% if entry.model %}
+                          <span class="mini quiet">
+                            {% filter capfirst %}
+                              {{ entry.model }}
+                            {% endfilter %}
+                          </span>
+                        {% endif %}
+                      </h3>
+                      {% if not entry.is_deletion %}
+                        <div class="timeline-body">
+                          {% if entry.is_addition %}
+                            {{ entry }}
+                          {% else %}
+                            <ul style="list-style: none; padding: 0;">
+                              {% action_message_to_list entry as action_message_list %}
+                              {% for action_message in action_message_list %}
+                                <li>{{ action_message.msg|style_bold_first_word }}</li>
+                              {% endfor %}
+                            </ul>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endfor %}
+                <div>
+                  <i class="fa fa-clock bg-gray"></i>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div> <!-- col-lg-3 -->
+
+    </div> <!-- row -->
+  </div> <!-- container-fluid -->
+{% endblock %}

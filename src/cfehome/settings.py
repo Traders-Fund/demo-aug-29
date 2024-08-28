@@ -25,7 +25,7 @@ environ.Env.read_env()
 SECRET_KEY = 'django-insecure-p&5(p4(z+bie5p1f%p33!z%cy%jeo6qsu)tah!&0ljs#!@*9tz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DJANGO_DEBUG', default=False)
+DEBUG = True
 
 print(DEBUG)
 
@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['.railway.app', '127.0.0.1']
 
 INSTALLED_APPS = [
     'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    
     'authuser',
     'dashboard'
    
@@ -83,17 +85,14 @@ WSGI_APPLICATION = 'cfehome.wsgi.application'
 
 
 DATABASES = {
-  'default': {
-     'ENGINE': 'django.db.backends.postgresql',
-     'NAME': 'fundhancedb2',
-     'USER': 'fundhancedb_owner',
-     'PASSWORD': 'RdirsP5hN2kc',
-     'HOST': 'ep-round-bird-a2n4c50k.eu-central-1.aws.neon.tech',
-     'PORT':  5432,
-     'OPTIONS': {
-       'sslmode': 'require',
+     'default': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'fhdb3040',
+         'USER': 'root',
+         'PASSWORD': 'Element99@@@',
+         'HOST': 'localhost',
+         'PORT': '3306',
      },
-  }
  }
 
 
@@ -131,6 +130,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR.parent / "local-cdn" / "static"
+
+STATICFILES_DIRS = [
+    # "/Users/cfe/Dev/django-tailwindcss/src/static",
+    BASE_DIR / "static"
+]
 
 if not os.path.isdir(STATIC_ROOT):
     os.makedirs(STATIC_ROOT, mode=0o755)

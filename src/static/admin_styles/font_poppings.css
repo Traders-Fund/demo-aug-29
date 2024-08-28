@@ -1,0 +1,13 @@
+body, 
+.navbar, 
+.footer, 
+.sidebar, 
+.nav-link, 
+.btn, 
+h1, h2, h3, h4, h5, h6, 
+p, 
+a {
+    font-family: "Poppins", sans-serif!important;
+}
+
+

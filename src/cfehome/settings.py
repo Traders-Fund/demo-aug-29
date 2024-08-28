@@ -11,19 +11,21 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-
+import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
+env = environ.Env()
+environ.Env.read_env()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-p&5(p4(z+bie5p1f%p33!z%cy%jeo6qsu)tah!&0ljs#!@*9tz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DJANGO_DEBUG', default=False)
+
+print(DEBUG)
 
 ALLOWED_HOSTS = ['.railway.app', '127.0.0.1']
 
@@ -38,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    'authuser'
+    'authuser',
+    'dashboard'
    
 ]
 
@@ -76,15 +79,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'cfehome.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
   'default': {
      'ENGINE': 'django.db.backends.postgresql',
@@ -99,16 +93,7 @@ DATABASES = {
   }
  }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'fhdb3039',
-#         'USER': 'root',
-#         'PASSWORD': 'Element99@@@',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#     },
-# }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {

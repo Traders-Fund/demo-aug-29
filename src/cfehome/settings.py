@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
-from pathlib import Path
 import environ
+from pathlib import Path
+from .juzzmin import JAZZMIN_UI_TWEAKS
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,6 +35,7 @@ ALLOWED_HOSTS = ['.railway.app', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,3 +141,6 @@ if not os.path.isdir(STATIC_ROOT):
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
 CSRF_TRUSTED_ORIGINS = ['https://fundhance-demo.up.railway.app']
+
+
+JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS

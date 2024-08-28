@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-p&5(p4(z+bie5p1f%p33!z%cy%jeo6qsu)tah!&0ljs#!@*9tz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.railway.app', '127.0.0.1']
 
 
 # Application definition
@@ -36,12 +36,17 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+   
 ]
+
+#AUTH_USER_MODEL = 'authuser.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -73,13 +78,25 @@ WSGI_APPLICATION = 'cfehome.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'fundhancedbfull',
+    'USER': 'fundhancedb_owner',
+    'PASSWORD': 'RdirsP5hN2kc',
+    'HOST': 'ep-round-bird-a2n4c50k.eu-central-1.aws.neon.tech',
+    'PORT': 5432,
+    'OPTIONS': {
+      'sslmode': 'require',
+    },
+  }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -116,15 +133,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    # "/Users/cfe/Dev/django-tailwindcss/src/static",
-    BASE_DIR / "static"
-]
-
 STATIC_ROOT = BASE_DIR.parent / "local-cdn" / "static"
-# STATIC_ROOT = os.path.join(str(BASE_DIR.parent), "local-cdn", "static")
+
+if not os.path.isdir(STATIC_ROOT):
+    os.makedirs(STATIC_ROOT, mode=0o755)
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
+CSRF_TRUSTED_ORIGINS = ['https://fundhance-demo.up.railway.app']

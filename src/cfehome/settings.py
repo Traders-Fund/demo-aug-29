@@ -84,22 +84,30 @@ WSGI_APPLICATION = 'cfehome.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'fundhancedb2',
-    'USER': 'fundhancedb_owner',
-    'PASSWORD': 'RdirsP5hN2kc',
-    'HOST': 'ep-round-bird-a2n4c50k.eu-central-1.aws.neon.tech',
-    'PORT':  5432,
-    'OPTIONS': {
-      'sslmode': 'require',
-    },
-  }
-}
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': 'fundhancedb2',
+#     'USER': 'fundhancedb_owner',
+#     'PASSWORD': 'RdirsP5hN2kc',
+#     'HOST': 'ep-round-bird-a2n4c50k.eu-central-1.aws.neon.tech',
+#     'PORT':  5432,
+#     'OPTIONS': {
+#       'sslmode': 'require',
+#     },
+#   }
+# }
 
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'fhdb3039',
+        'USER': 'root',
+        'PASSWORD': 'Element99@@@',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {

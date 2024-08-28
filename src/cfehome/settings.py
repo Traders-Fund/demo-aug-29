@@ -38,10 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'authuser'
    
 ]
 
-#AUTH_USER_MODEL = 'authuser.User'
+AUTH_USER_MODEL = 'authuser.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

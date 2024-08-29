@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+  {% load static %}
+
+  <section class="h-screen antialiased bg-gray-50">
+    <main class="p-4 pt-24 md:ml-64 isolate bg-gray-50">
+      <div class="container mx-auto p-4">
+        <div class="grid lg:grid-cols-3 gap-3">
+          <div class="lg:col-span-2">
+            <div class="mb-3 p-2 bg-white border border-gray-200 rounded-lg shadow sm:p-6 h-full">
+              <div class="bg-white rounded-t-lg">
+                <h5 class="font-semibold md:text-2xl text-lg">Your liquidity</h5>
+              </div>
+              <div class="bg-white rounded-b-lg">
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h6 class="text-gray-600 font-extralight md:text-xl pb-4 text-lg">Current:</h6>
+                    <h3 class="font-medium md:text-5xl sm:text-2xl text-xl">$27,986</h3>
+                  </div>
+
+                  <div>
+                    <div class="my-4 flex justify-between items-center">
+                      <p class="text-base text-neutral-600 font-light mb-0">Traders:</p>
+                      <p class="font-semibold text-base mb-0">10,650</p>
+                    </div>
+                    <hr class="my-4 bg-gray-200" />
+                    <div class="mb-4 flex justify-between items-center">
+                      <p class="text-base text-neutral-600 font-light mb-0">Accounts opened:</p>
+                      <p class="font-semibold text-base mb-0">8,576</p>
+                    </div>
+                    <hr class="my-4 bg-gray-200" />
+                    <div class="mb-4 flex justify-between items-center">
+                      <p class="text-base text-neutral-600 font-light mb-0">Challenges passed:</p>
+                      <p class="font-semibold text-base mb-0">5,560</p>
+                    </div>
+                    <hr class="my-4 bg-gray-200" />
+                    <div class="flex justify-between items-center">
+                      <p class="text-base text-neutral-600 font-light mb-0">Challenges failed:</p>
+                      <p class="font-semibold text-base mb-0">2,650</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid lg:grid-rows-2 gap-2">
+            <div class="bg-white border border-gray-200 rounded-lg shadow p-2 sm:p-6 flex-grow">
+              <div class="bg-white rounded-t-lg">
+                <h5 class="font-semibold md:text-2xl text-lg">Lifetime income</h5>
+              </div>
+              <div class="bg-white rounded-b-lg">
+                <p class="text-gray-800 font-light text-lg">12,522 applications</p>
+                <hr class="my-4 bg-gray-200" />
+                <h3 class="text-lg font-medium">$105,651</h3>
+              </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-lg shadow p-2 sm:p-6 flex-grow">
+              <div class="bg-white rounded-t-lg">
+                <h5 class="font-semibold md:text-2xl text-lg">Lifetime payouts</h5>
+              </div>
+              <div class="bg-white rounded-b-lg">
+                <p class="text-gray-800 font-light text-lg">8,390 payouts</p>
+                <hr class="my-4 bg-gray-200" />
+                <h3 class="text-lg font-medium">$89,785</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-6 mt-6">
+          <!-- First chart (50%) -->
+          <div class="col-span-1 max-w-full bg-white border border-gray-200 rounded-lg shadow p-4 md:p-6">
+            <div class="flex justify-between">
+              <div>
+                <h5 class="leading-none text-3xl font-bold text-gray-900 pb-2">31.4k</h5>
+                <p class="text-base font-normal text-gray-500">Number of traders</p>
+              </div>
+              <div class="flex items-center px-2.5 py-0.5 text-xl font-semibold text-green-500 text-center">
+                12%<svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4" />
+                </svg>
+              </div>
+            </div>
+            <div id="area-chart-number-traders"></div>
+            <div class="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
+              <div class="flex justify-between items-center pt-5">
+                <!-- Button -->
+                <button id="dropdownFirstChart" data-dropdown-toggle="firstChartDropdown" data-dropdown-placement="bottom" class="text-sm font-medium text-gray-500 hover:text-gray-900 text-center inline-flex items-center" type="button">
+                  Last 7 days<svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                  </svg>
+                </button>
+                <!-- Dropdown menu -->
+                <div id="firstChartDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                  <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownFirstChart">
+                    <li>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Yesterday</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Today</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 7 days</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 30 days</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 90 days</a>
+                    </li>
+                  </ul>
+                </div>
+                <a href="#" class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-violet-600 hover:text-violet-700 hover:bg-gray-100 px-3 py-2">
+                  Users Report<svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second chart (50%) -->
+
+          <div class="max-w-full w-full bg-white rounded-lg shadow p-4 md:p-6">
+            <div class="flex justify-between border-gray-200 border-b pb-3">
+              <dl>
+                <dt class="text-base font-normal text-gray-500 pb-1">Profit</dt>
+                <dd class="leading-none text-3xl font-bold text-gray-900">$5,405</dd>
+              </dl>
+              <div>
+                <span class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md">
+                  <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4" />
+                  </svg>Profit rate 23.5%
+                </span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 py-3">
+              <dl>
+                <dt class="text-base font-normal text-gray-500 pb-1">Income</dt>
+                <dd class="leading-none text-xl font-bold text-green-500">$23,635</dd>
+              </dl>
+              <dl>
+                <dt class="text-base font-normal text-gray-500 pb-1">Payouts</dt>
+                <dd class="leading-none text-xl font-bold text-red-600">-$18,230</dd>
+              </dl>
+            </div>
+
+            <div id="area-chart-sales"></div>
+            <div class="grid grid-cols-1 items-center border-gray-200 border-t justify-between">
+              <div class="flex justify-between items-center pt-5">
+                <!-- Button -->
+                <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown" data-dropdown-placement="bottom" class="text-sm font-medium text-gray-500 hover:text-gray-900 text-center inline-flex items-center" type="button">
+                  Last 6 months<svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                  </svg>
+                </button>
+                <!-- Dropdown menu -->
+                <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                  <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+                    <li>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Yesterday</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Today</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 7 days</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 30 days</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 90 days</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last 6 months</a>
+                    </li>
+                    <li>
+                      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Last year</a>
+                    </li>
+                  </ul>
+                </div>
+                <a href="#" class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-violet-600 hover:text-violet-700 hover:bg-gray-100 px-3 py-2">
+                  Revenue Report<svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Third, Fourth, and Fifth Charts (33% width each) -->
+        <div class="grid lg:grid-cols-3 gap-6 mt-6">
+          <!-- Third chart (33%) -->
+          <div class="col-span-1 max-w-full bg-white border border-gray-200 rounded-lg shadow p-4 md:p-6">
+            <div class="flex justify-between items-start w-full">
+              <div class="flex-col items-center">
+                <div class="flex items-center mb-1">
+                  <h5 class="text-xl font-bold leading-none text-gray-900 me-1">Programs by purchases</h5>
+                </div>
+              </div>
+            </div>
+            <div class="py-6" id="programs-purchases"></div>
+          </div>
+
+          <!-- Fourth chart (33%) -->
+          <div class="col-span-1 max-w-full bg-white border border-gray-200 rounded-lg shadow p-4 md:p-6">
+            <div class="flex justify-between items-start w-full">
+              <div class="flex-col items-center">
+                <div class="flex items-center mb-1">
+                  <h5 class="text-xl font-bold leading-none text-gray-900 me-1">Programs by numbers</h5>
+                </div>
+              </div>
+            </div>
+            <div class="py-6" id="pie-chart-program-numbers"></div>
+          </div>
+
+          <!-- Fifth chart (33%) -->
+          <div class="col-span-1 max-w-full bg-white border border-gray-200 rounded-lg shadow p-4 md:p-6">
+            <div class="flex justify-between items-start w-full">
+              <div class="flex-col items-center">
+                <div class="flex items-center mb-1">
+                  <h5 class="text-xl font-bold leading-none text-gray-900 me-1">Pass rate of traders</h5>
+                </div>
+              </div>
+            </div>
+            <div class="py-6" id="pie-chart-pass-rate"></div>
+          </div>
+        </div>
+
+        {% comment %} {% endcomment %}
+
+        {% comment %} {% endcomment %}
+
+        {% comment %} {% endcomment %}
+
+        {% comment %} {% endcomment %}
+      </div>
+    </main>
+  </section>
+
+  {% include 'pages/staff/dashboard_charts/chart_pass_rate.html' %} {% comment %}programs by purchases{% endcomment %}
+  {% include 'pages/staff/dashboard_charts/chart_program_numbers.html' %}
+
+  {% include 'pages/staff/dashboard_charts/chart_program_purchases.html' %} {% comment %}pass rate{% endcomment %}
+  {% include 'pages/staff/dashboard_charts/charts.html' %}
+{% endblock %}

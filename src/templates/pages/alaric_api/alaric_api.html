@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Stats</title>
+</head>
+<body>
+    <h1>Advanced Stats</h1>
+    {% if data %}
+        <ul>
+            {% for item in data %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% elif error_message %}
+        <p>{{ error_message }}</p>
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+</body>
+</html>

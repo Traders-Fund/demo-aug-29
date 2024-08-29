@@ -1,0 +1,66 @@
+<script>
+    const getChartOptions = () => {
+        return {
+          series: [22.8, 4.8, 30.4, 42.14],
+          colors: ["#581c87", "#4f46e5", "#9061F9", "#86198f"],
+          chart: {
+            height: 420,
+            width: "100%",
+            type: "pie",
+          },
+          stroke: {
+            colors: ["white"],
+            lineCap: "",
+          },
+          plotOptions: {
+            pie: {
+              labels: {
+                show: true,
+              },
+              size: "100%",
+              dataLabels: {
+                offset: -25
+              }
+            },
+          },
+          labels: ["$10k Instant", "$50k Instant", "$50k Challenge", "$100k Challenge"],
+          dataLabels: {
+            enabled: true,
+            style: {
+              fontFamily: "Inter, sans-serif",
+            },
+          },
+          legend: {
+            position: "bottom",
+            fontFamily: "Inter, sans-serif",
+          },
+          yaxis: {
+            labels: {
+              formatter: function (value) {
+                return value + "%"
+              },
+            },
+          },
+          xaxis: {
+            labels: {
+              formatter: function (value) {
+                return value  + "%"
+              },
+            },
+            axisTicks: {
+              show: false,
+            },
+            axisBorder: {
+              show: false,
+            },
+          },
+        }
+      }
+      
+      if (document.getElementById("programs-purchases") && typeof ApexCharts !== 'undefined') {
+        const chart = new ApexCharts(document.getElementById("programs-purchases"), getChartOptions());
+        chart.render();
+      }
+      
+
+</script>

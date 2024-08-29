@@ -1,0 +1,266 @@
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+  <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4 mb-4">
+    <div class="rounded-lg h-full">
+      <div class="p-6 bg-white border border-gray-200 rounded-lg shadow 0 h-full flex flex-col justify-between">
+        <h5 class="mb-2 text-base font-bold text-end tracking-tight text-gray-900 ">Today's gain</h5>
+        <div class="flex items-center gap-4">
+          <span class="">
+            <svg class="md:w-20 w-12 h-12 md:h-20 text-neutral-600 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.6 16.733c.234.269.548.456.895.534a1.4 1.4 0 0 0 1.75-.762c.172-.615-.446-1.287-1.242-1.481-.796-.194-1.41-.861-1.241-1.481a1.4 1.4 0 0 1 1.75-.762c.343.077.654.26.888.524m-1.358 4.017v.617m0-5.939v.725M4 15v4m3-6v6M6 8.5 10.5 5 14 7.5 18 4m0 0h-3.5M18 4v3m2 8a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z" />
+            </svg>
+          </span>
+          <div>
+            <h3 class="md:text-2xl  font-bold">$821</h3>
+            <p class="text-green-500  text-base font-semibold">+1.6%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rounded-lg h-full">
+      <div class="p-6 bg-white border border-gray-200 rounded-lg shadow 0 h-full flex flex-col justify-between">
+        <a href="#"><h5 class="mb-2 text-base font-bold text-end tracking-tight text-gray-900 ">Total gains</h5></a>
+        <div class="flex items-center gap-4">
+          <span>
+            <svg class="md:w-20 w-12 h-12 md:h-20 text-neutral-600 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M9 7V2.221a2 2 0 0 0-.5.365L4.586 6.5a2 2 0 0 0-.365.5H9Zm2 0V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm-1 9a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2Zm2-5a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Zm4 4a1 1 0 1 0-2 0v3a1 1 0 1 0 2 0v-3Z" clip-rule="evenodd" />
+            </svg>
+          </span>
+          <div>
+            <h3 class="md:text-2xl font-bold">$821</h3>
+            <p class="text-green-500  text-base font-semibold">+1.6%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rounded-lg h-full">
+      <div class="p-6 bg-white border border-gray-200 rounded-lg shadow 0 h-full flex flex-col justify-between">
+        <a href="#"><h5 class="mb-2 text-base font-bold text-end tracking-tight text-gray-900 ">Current profit</h5></a>
+        <div class="flex items-center gap-4">
+          <svg class="md:w-20 w-12 h-12 md:h-20 text-neutral-600 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 3a3 3 0 0 0-1 5.83v6.34a3.001 3.001 0 1 0 2 0V15a2 2 0 0 1 2-2h1a5.002 5.002 0 0 0 4.927-4.146A3.001 3.001 0 0 0 16 3a3 3 0 0 0-1.105 5.79A3.001 3.001 0 0 1 12 11h-1c-.729 0-1.412.195-2 .535V8.83A3.001 3.001 0 0 0 8 3Z" />
+          </svg>
+          <div>
+            <h3 class="md:text-2xl font-bold">$824</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rounded-lg h-full">
+      <div class="p-6 bg-white border border-gray-200 rounded-lg shadow 0 h-full flex flex-col justify-between">
+        <a href="#"><h5 class="mb-2 text-base font-bold text-end tracking-tight text-gray-900 ">Target profit</h5></a>
+        <div class="flex items-center gap-4">
+          <svg class="md:w-20 w-12 h-12 md:h-20 text-neutral-600 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M13.09 3.294c1.924.95 3.422 1.69 5.472.692a1 1 0 0 1 1.438.9v9.54a1 1 0 0 1-.562.9c-2.981 1.45-5.382.24-7.25-.701a38.739 38.739 0 0 0-.622-.31c-1.033-.497-1.887-.812-2.756-.77-.76.036-1.672.357-2.81 1.396V21a1 1 0 1 1-2 0V4.971a1 1 0 0 1 .297-.71c1.522-1.506 2.967-2.185 4.417-2.255 1.407-.068 2.653.453 3.72.967.225.108.443.216.655.32Z" />
+          </svg>
+          <div>
+            <h3 class="md:text-2xl font-bold">${{ selected_account.first_profit_target|floatformat:2|intcomma }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 xl:grid-cols-3 gap-4 mb-4 w-full h-full">
+    <div class="sm:col-span-2 border-gray-200 border col-span-1 max-w-full w-full bg-white rounded-lg shadow  p-4 md:p-6 h-full">
+      <div class="flex justify-between">
+        <div>
+          <h5 class="leading-none text-3xl font-bold text-gray-900  pb-2">32.4k</h5>
+          <p class="text-base font-normal text-gray-500 ">Your profits</p>
+        </div>
+        <div class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500  text-center">
+          12%<svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4" />
+          </svg>
+        </div>
+      </div>
+      <div id="area-chart"></div>
+      <div class="grid grid-cols-1 items-center border-gray-200 border-t  justify-between">
+        <div class="flex justify-between items-center pt-5">
+          <!-- Button -->
+          <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown" data-dropdown-placement="bottom" class="text-sm font-medium text-gray-500  hover:text-gray-900 text-center inline-flex items-center " type="button">
+            Last 7 days<svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+            </svg>
+          </button>
+          <!-- Dropdown menu -->
+          <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 0">
+            <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
+              <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Yesterday</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Today</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Last 7 days</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Last 30 days</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Last 90 days</a>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-violet-600 hover:text-violet-700  hover:bg-gray-100   px-3 py-2">
+            Profit report<svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-1 rounded-lg w-full h-full flex flex-col">
+      <div class="w-full p-4 bg-white h-full border border-gray-200 rounded-lg shadow sm:p-6 0">
+        <div class="flex items-center justify-between mb-4">
+          <h5 class="text-xl font-bold leading-none text-gray-900 ">Account information</h5>
+
+          <a href="#" class="text-sm font-medium text-blue-600 hover:underline ">
+            <svg class="w-6 h-6 text-neutral-600 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+              <path d="M16 0H4a2 2 0 0 0-2 2v1H1a1 1 0 0 0 0 2h1v2H1a1 1 0 0 0 0 2h1v2H1a1 1 0 0 0 0 2h1v2H1a1 1 0 0 0 0 2h1v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6ZM13.929 17H7.071a.5.5 0 0 1-.5-.5 3.935 3.935 0 1 1 7.858 0 .5.5 0 0 1-.5.5Z" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="flow-root">
+          <p class="text-sm text-gray-500 pb-10 ">Information on display is updated daily according to your data from the accounts associated to your name at Alaric Securities.</p>
+          <ul role="list" class="divide-y divide-gray-200 ">
+            <li class="py-3 sm:py-4">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  {% comment %} <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image" /> {% endcomment %}
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm text-gray-500 ">Status:</p>
+                </div>
+                <div class="text-sm font-semibold text-white rounded-2xl px-4 py-1 bg-green-400">Active</div>
+              </div>
+            </li>
+            <li class="py-3 sm:py-4">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  {% comment %} <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image" /> {% endcomment %}
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm text-gray-500 ">Equity size:</p>
+                </div>
+                <div class="text-sm font-semibold text-gray-900 ">${{ selected_account.account_equity|floatformat:2|intcomma }}</div>
+              </div>
+            </li>
+            <li class="py-3 sm:py-4">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  {% comment %} <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-2.jpg" alt="Michael image" /> {% endcomment %}
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm text-gray-500 ">Evaluation starts:</p>
+                </div>
+                <div class="text-sm font-semibold text-gray-900 ">{{ selected_account.evaluation_starts|date:'d-m-Y H:i' }}</div>
+              </div>
+            </li>
+            <li class="py-3 sm:py-4">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  {% comment %} <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-4.jpg" alt="Lana image" /> {% endcomment %}
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm text-gray-500 ">Evaluation ends:</p>
+                </div>
+                <div class="text-sm font-semibold text-gray-900 ">05-07-2024 21:35</div>
+              </div>
+            </li>
+            <li class="py-3 sm:py-4">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  {% comment %} <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-4.jpg" alt="Lana image" /> {% endcomment %}
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm text-gray-500 truncate ">Next stage:</p>
+                </div>
+                <div class="inline-flex items-center text-sm font-semibold text-gray-900 ">Step 2</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const options = {
+      chart: {
+        height: '100%',
+        maxWidth: '100%',
+        type: 'area',
+        fontFamily: 'Inter, sans-serif',
+        dropShadow: {
+          enabled: true
+        },
+        toolbar: {
+          show: true
+        }
+      },
+      tooltip: {
+        enabled: true,
+        x: {
+          show: true
+        }
+      },
+      fill: {
+        type: 'gradient',
+        gradient: {
+          opacityFrom: 0.55,
+          opacityTo: 0,
+          shade: '#a78bfa',
+          gradientToColors: ['#a78bfa']
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        width: 3
+      },
+      grid: {
+        show: true,
+        strokeDashArray: 4,
+        padding: {
+          left: 2,
+          right: 2,
+          top: 0
+        }
+      },
+      series: [
+        {
+          name: 'Your profits',
+          data: [6500, 6418, 6456, 6526, 6356, 6456],
+          color: '#7c3aed'
+        }
+      ],
+      xaxis: {
+        categories: ['01 February', '02 February', '03 February', '04 February', '05 February', '06 February', '07 February'],
+        labels: {
+          show: true
+        },
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: true
+        }
+      },
+      yaxis: {
+        show: true
+      }
+    }
+    
+    if (document.getElementById('area-chart') && typeof ApexCharts !== 'undefined') {
+      const chart = new ApexCharts(document.getElementById('area-chart'), options)
+      chart.render()
+    }
+  </script>
+{% endblock %}

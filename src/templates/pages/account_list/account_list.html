@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% load static %}
+
+  <section class="h-screen antialiased bg-gray-50 ">
+     
+  
+    <main class="p-4 pt-32 sm:pt-24 md:ml-64">
+      <h2 class="text-4xl font-extrabold  pb-4">Your accounts</h2>
+      <div class="">
+        <div class="relative overflow-x-auto w-full shadow-md sm:rounded-lg">
+          <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-200  ">
+              <tr>
+                <th scope="col" class="px-6 py-3">Name</th>
+                <th scope="col" class="px-6 py-3">Equity</th>
+                <th scope="col" class="px-6 py-3">Created</th>
+                <th scope="col" class="px-6 py-3">Type</th>
+                <th scope="col" class="px-12 py-3">Status</th>
+                <th scope="col" class="px-6 py-3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for account in trading_accounts %}
+                <tr class="bg-white border-b  hover:bg-gray-50 ">
+                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">{{ account.account_name }}</th>
+                  <td class="px-6 py-4">${{ account.account_equity }}</td>
+                  <td class="px-6 py-4">{{ account.evaluation_starts }}</td>
+                  <td class="px-6 py-4">{{ account.account_type|capfirst }}</td>
+                  <td class="px-6 py-4">
+                    <p class="text-xs font-semibold max-w-24 rounded-2xl text-center p-2 
+                  {% if account.account_status == 'active' %}
+                    bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white
+                  {% elif account.account_status == 'pending' %}
+                   bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 text-gray-900
+                  {% elif account.account_status == 'challenge' %}
+                   bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 text-white
+                  {% else %}
+                    bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white  {% endif %}
+                ">{{ account.account_status|capfirst }}</p>
+
+                  </td>
+                  
+                  <td class="px-6 py-4 text-right">
+                    <a href="{% url 'account_overview' %}?account={{ account.account_name }}">
+                      <button type="button" class="inline-flex items-center p-2 mr-2 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-purple-300">
+                        <svg class="w-3.5 h-3.5 me-1 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
+                        </svg>More
+                      </button>
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </section>
+
+
+
+
+{% endblock %}

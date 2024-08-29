@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% if user.has_bought_first_account %}
+    {% include 'pages/account_overview/account_overview_content.html' %}
+  {% else %}
+    <section class="h-screen  antialiased bg-gray-50">
+      <main class="p-4 pt-24 sm:pt-16 md:ml-64 bg-gray-50">
+        
+        {% include 'conditionals/account_not_bought.html' %}
+      </main>
+    </section>
+  {% endif %}
+{% endblock %}

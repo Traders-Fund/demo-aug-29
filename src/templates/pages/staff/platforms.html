@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <section class="h-screen antialiased bg-gray-50">
+    <main class="p-4 pt-32 sm:pt-24 md:ml-64">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-10">Trading platforms</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <a href="https://hammerhub.net/HMRSetup.exe" target="_blank" class="p-6 transition-all hover:bg-gray-100 cursor-pointer hover:shadow-lg flex bg-white rounded-lg shadow-md">
+            <div class="flex items-center">
+              <img src="{% static 'brand/hammerLogo.png' %}" alt="Hammer Logo" class="mr-4 w-32 h-32" />
+              <div>
+                <h3 class="text-xl font-semibold text-gray-900">Hammer Desktop platform</h3>
+                <p class="text-gray-500">Download the Hammer trading terminal</p>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://alaricsecurities.com" target="_blank" class="p-6 transition-all hover:bg-gray-100 hover:shadow-lg cursor-pointer flex bg-white rounded-lg shadow-md">
+            <div class="flex items-center">
+              <img src="{% static 'brand/alaricLogo.png' %}" alt="Alaric Securities Logo" class="mr-4  w-32 h-32" />
+              <div>
+                <h3 class="text-xl font-semibold text-gray-900">Alaric web platform</h3>
+                <p class="text-gray-500">Open Alaric’s web platform from your browser</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </main>
+  </section>
+{% endblock %}

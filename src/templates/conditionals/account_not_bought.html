@@ -1,0 +1,35 @@
+<section class="h-full isolate relative sm:mt-6">
+  <div class="absolute inset-x-0 top-[-10rem] transform-gpu overflow-hidden blur-3xl sm:top-[-20rem] z-[-10]" aria-hidden="true">
+    <!-- Reduced the size and better aligned the gradient -->
+    <div class="left-1/2 aspect-[1155/678] w-[30rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-20rem)] sm:w-[60rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+  </div>
+  <div class="w-full p-6 bg-white border z-20 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a><h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">It looks like you have not yet applied for funding</h5></a>
+    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Check out our prop firms programs and apply as you wish</p>
+    <a href="{% url 'apply_funding' %}">
+      <button type="button" class="inline-flex items-center p-2 mr-2 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-blue-800">
+        <svg class="w-3.5 h-3.5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
+          <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
+        </svg>Purchase a program
+      </button>
+    </a>
+  </div>
+ {% comment %} this component {% endcomment %}
+ <div class="flex flex-col items-center justify-center my-4 border border-gray-200 bg-white rounded-lg shadow p-6">
+  <!-- Added position relative to contain the gradient -->
+ 
+
+  <svg class="w-6 h-6 text-gray-600 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" d="M8 10V7a4 4 0 1 1 8 0v3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1Zm2-3a2 2 0 1 1 4 0v3h-4V7Zm2 6a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z" clip-rule="evenodd" />
+  </svg>
+  <h3 class="font-light text-xl text-neutral-600 max-w-md text-center">Once you open your first account, your trading and payout statistics will appear</h3>
+</div>
+
+{% comment %} this component {% endcomment %}
+
+  <div class="mt-5 relative bg-slate-100 p-2 blur-sm">
+    <main>
+      {% include 'pages/account_overview/performance.html' %}
+    </main>
+  </div>
+</section>

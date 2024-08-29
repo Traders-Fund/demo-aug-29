@@ -1,0 +1,337 @@
+
+
+{% load humanize %}
+{% block content %}
+    {% load static %}
+
+  
+
+    <section class="h-screen antialiased bg-gray-50 ">
+      
+      <main class="p-4 pt-32 sm:pt-24 md:ml-64 bg-gray-50 ">
+     
+          <div class="pb-4">
+            <h2 class="text-4xl font-extrabold ">Trading account information</h2>
+            <p class="my-4 text-lg text-gray-500">Use this info to log in to the trading platform. Do not share sensitive information.</p>
+
+            <div class="max-w-sm">
+              <label for="countries" class="block mb-2 font-medium text-violet-600 ">Select account</label>
+              <form method="GET" action="">
+                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-violet-600 focus:border-violet-600 block w-full p-2.5 " name="account" id="accountSelect" onchange="this.form.submit()">
+                  <option selected>Select...</option>
+                  {% for account in user_accounts %}
+                    <option value="{{ account.account_name }}" {% if selected_account and selected_account.account_name == account.account_name %}selected{% endif %}>{{ account.account_name }}</option>
+                  {% endfor %}
+                </select>
+              </form>
+            </div>
+          </div>
+          {% if not selected_account %}
+          <div class="max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 ">
+            <h5 class="mb-2 text-2xl font-bold text-gray-900 ">No account selected</h5>
+          </div>
+        {% else %}
+     
+          <div class="grid grid-cols-1 gap-4 mb-4 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- First row with three cards -->
+            <div class="h-32 col-span-1 md:h-40">
+              <div class="w-full h-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 ">
+                <h6 class="mb-3 text-base font-semibold text-gray-900 md:text-xl ">Platform</h6>
+                <ul class="my-4 space-y-3">
+                  <li>
+                    <a href="https://hammerhub.net/HMRSetup.exe" target="_blank" target="_blank" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow  ">
+                      <img class="w-5" src="{% static 'brand/hammerLogo.png' %}" />
+                      <span class="flex-1 ms-3 whitespace-nowrap">Hammer Trading</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="h-32 col-span-1 md:h-40">
+              <div class="w-full h-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 ">
+                <h6 class="mb-3 text-base font-semibold text-gray-900 md:text-xl ">Broker</h6>
+                <ul class="my-4 space-y-3">
+                  <li>
+                    <a href="https://alaricsecurities.com/" target="_blank" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow  ">
+                      <img class="w-7" src="{% static 'brand/alaricLogo.png' %}" />
+                      <span class="flex-1 ms-3 whitespace-nowrap">Alaric securities</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="h-32 col-span-1 md:h-40">
+              <div class="w-full h-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 ">
+                <h6 class="mb-3 text-base font-semibold text-gray-900 md:text-xl ">Account name</h6>
+                <ul class="my-4 space-y-3">
+                  {% if selected_account %}
+                    {% include "modals/modal_change_account_name.html" %}
+                    <li>
+                      <a data-modal-target="update-account-modal" data-modal-toggle="update-account-modal" role="button"  class="flex items-center text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow  ">
+                        <button class="flex justify-start w-full h-full p-3">
+                          <svg class="w-6 h-6 text-violet-600 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M11.32 6.176H5c-1.105 0-2 .949-2 2.118v10.588C3 20.052 3.895 21 5 21h11c1.105 0 2-.948 2-2.118v-7.75l-3.914 4.144A2.46 2.46 0 0 1 12.81 16l-2.681.568c-1.75.37-3.292-1.263-2.942-3.115l.536-2.839c.097-.512.335-.983.684-1.352l2.914-3.086Z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M19.846 4.318a2.148 2.148 0 0 0-.437-.692 2.014 2.014 0 0 0-.654-.463 1.92 1.92 0 0 0-1.544 0 2.014 2.014 0 0 0-.654.463l-.546.578 2.852 3.02.546-.579a2.14 2.14 0 0 0 .437-.692 2.244 2.244 0 0 0 0-1.635ZM17.45 8.721 14.597 5.7 9.82 10.76a.54.54 0 0 0-.137.27l-.536 2.84c-.07.37.239.696.588.622l2.682-.567a.492.492 0 0 0 .255-.145l4.778-5.06Z" clip-rule="evenodd" />
+                          </svg>
+                          <span class="font-normal text-md ms-3 whitespace-nowrap">{{ selected_account.account_name }}</span>
+                        </button>
+                      </a>
+                    </li>
+                  {% else %}
+                    <h6 class="card-text">No account selected</h6>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second row with two cards occupying the same row -->
+          <div class="grid grid-cols-1 bg-gray-50  gap-4 sm:grid-cols-2 lg:grid-cols-2">
+            <div class="h-32 col-span-1 md:h-40">
+              <div class="w-full h-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 ">
+                <h6 class="mb-3 text-base font-semibold text-gray-900 md:text-xl ">Password</h6>
+                <ul class="my-4 space-y-3">
+                  <li>
+                    <a href="#" class="flex items-center text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow  ">
+                      <button data-tooltip-target="tooltip-default2" type="button" class="flex justify-start w-full h-full p-3">
+                        <svg class="w-6 h-6 text-violet-600 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                          <path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/>
+                          <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">************</span>
+                        <div id="tooltip-default2" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip ">
+                          mypassword123123
+                          <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
+                      </button>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="h-32 col-span-1 md:h-40">
+              <div class="w-full h-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 ">
+                <h6 class="mb-3 text-base font-semibold text-gray-900 md:text-xl ">Username</h6>
+                <ul class="my-4 space-y-3">
+                  <li>
+                    <a href="#"  class="flex items-center text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow  ">
+                      <button data-tooltip-target="tooltip-default" type="button" class="flex justify-start w-full h-full p-3">
+                        <svg class="w-6 h-6 text-violet-600 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                          <path fill-rule="evenodd" d="M7 2a2 2 0 0 0-2 2v1a1 1 0 0 0 0 2v1a1 1 0 0 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H7Zm3 8a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm-1 7a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3 1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="flex-1 ms-3 whitespace-nowrap">johndoe@123.com</span>
+                        <div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip ">
+                          username on Alaric Securities Hammer trading platform
+                          <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
+                      </button>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+        <div class="">
+          <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2">
+            <div class="h-full rounded-lg shadow ">
+                <div class="w-full h-full p-4 bg-white border rounded-lg ">
+
+                  <div class="flex items-start justify-between">
+                    <p class="mb-2 text-base font-normal tracking-tight text-gray-900 ">
+                   Account type
+                    </p>
+                    {% if selected_account %}
+                    {% include 'modals/modal_account_type.html' %}
+                  
+                    <a data-modal-target="account-type-modal" data-modal-toggle="account-type-modal" role="button"  class="flex items-center justify-center p-4 text-base font-bold text-gray-900 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 group hover:shadow  ">
+                   
+                      <svg class="w-6 h-6 text-violet-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z" clip-rule="evenodd"/>
+                      </svg>
+                      
+                      
+                      
+                      
+                      
+                      <span class="sr-only"></span>
+                    
+                    </a>
+                    
+                      {% endif %}
+                    
+    </div>
+                        <p class="inline-block mb-2 text-lg font-bold tracking-tight text-gray-900 text-pretty ">
+                          ${{ selected_account.account_equity|floatformat:2|intcomma }} - {{selected_account.account_type}}
+                      </p>
+                   
+                </div>
+            </div>
+            <div class="h-full border-gray-300 rounded-lg shadow ">
+              <div class="w-full h-full p-4 bg-white border rounded-lg ">
+
+                <div class="flex items-start justify-between">
+                  <p class="mb-2 text-base font-normal tracking-tight text-gray-900 ">
+                 Profit split
+                  </p>
+                  {% if selected_account %}
+                  {% include 'modals/modal_profit_split.html' %}
+                  <a data-modal-target="account-profit-split" data-modal-toggle="account-profit-split" role="button" class="flex items-center justify-center p-4 text-base font-bold text-gray-900 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 group hover:shadow  ">
+           
+                    <svg class="w-6 h-6 text-violet-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z" clip-rule="evenodd"/>
+                    </svg>
+                    
+                    <span class="sr-only"></span>
+              
+                  </a>
+                  {% endif %}
+            </div>
+                <p class="inline-block mb-2 text-lg font-bold tracking-tight text-gray-900 text-pretty ">
+                  {{selected_account.profit_split}}%
+              </p>
+           
+              </div>
+            </div>
+            <div class="h-full border-gray-300 rounded-lg shadow ">
+              <div class="w-full h-full p-4 bg-white border rounded-lg ">
+
+                <div class="flex items-start justify-between">
+                  <p class="mb-2 text-base font-normal tracking-tight text-gray-900 ">
+                Max drawdown
+                  </p>
+                  {% if selected_account %}
+                  {% include 'modals/modal_max_drawdown.html' %}
+                  <a data-modal-target="account-max-drawdown" data-modal-toggle="account-max-drawdown" role="button" class="flex items-center justify-center p-4 text-base font-bold text-gray-900 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 group hover:shadow  ">
+           
+                    <svg class="w-6 h-6 text-violet-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z" clip-rule="evenodd"/>
+                    </svg>
+                    
+                    <span class="sr-only"></span>
+              
+                  </a>
+                  {% endif %}
+                  
+  </div>
+                <p class="inline-block mb-2 text-lg font-bold tracking-tight text-gray-900 text-pretty ">
+                  {{selected_account.account_maximum_drawdown_limit}}%
+              </p>
+           
+              </div>
+            </div>
+            <div class="h-full border-gray-300 rounded-lg shadow ">
+              <div class="w-full h-full p-4 bg-white border rounded-lg ">
+                <div class="flex items-start justify-between">
+                  <p class="mb-2 text-base font-normal tracking-tight text-gray-900 ">
+               Daily drawdown
+                  </p>
+                  {% if selected_account %}
+                  {% include 'modals/modal_daily_drawdown.html' %}
+                  <a data-modal-target="account-daily-drawdown" data-modal-toggle="account-daily-drawdown" role="button" class="flex items-center justify-center p-4 text-base font-bold text-gray-900 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 group hover:shadow  ">
+           
+                    <svg class="w-6 h-6 text-violet-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z" clip-rule="evenodd"/>
+                    </svg>
+                    
+                    <span class="sr-only"></span>
+              
+                  </a>
+                  {% endif %}
+                  
+  </div>
+                <p class="inline-block mb-2 text-lg font-bold tracking-tight text-gray-900 text-pretty ">
+                {{selected_account.account_daily_drawdown_limit}}%
+              </p>
+           
+              </div>
+            </div>
+          </div>
+         
+                
+         
+<div class="mt-6">
+  <p class="block mb-2 text-lg font-bold text-gray-900 ">Select a filter</p>
+  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+    <li>
+      <input type="radio" id="hosting-small" name="account_type" value="performance" class="hidden peer" required checked />
+      <label for="hosting-small" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer  peer-checked:border-violet-600 peer-checked:text-violet-600 hover:text-gray-600 hover:bg-gray-100 ">
+        <div class="block">
+          <div class="w-full text-lg font-semibold">Performance</div>
+        </div>
+        <svg class="w-5 h-5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v15a1 1 0 0 0 1 1h15M8 16l2.5-5.5 3 3L17.273 7 20 9.667"/>
+        </svg>
+      </label>
+    </li>
+    <li>
+      <input type="radio" id="hosting-big" name="account_type" value="general" class="hidden peer" />
+      <label for="hosting-big" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer  peer-checked:border-violet-600 peer-checked:text-violet-600 hover:text-gray-600 hover:bg-gray-100 ">
+        <div class="block">
+          <div class="w-full text-lg font-semibold">General</div>
+        </div>
+        <svg class="w-5 h-5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z" clip-rule="evenodd"/>
+        </svg>
+      </label>
+    </li>
+  </ul>
+</div>
+
+                <main class="mt-5">
+                  <div id="performance-content">
+                    {% include 'pages/account_overview/performance.html' %}
+                  </div>
+                  <div id="general-content" class="hidden">
+                    {% include 'pages/account_overview/general.html' %}
+                  </div>
+                </main>
+            
+
+                {% endif %}
+               
+                <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                  const performanceRadio = document.getElementById("hosting-small");
+                  const generalRadio = document.getElementById("hosting-big");
+                  const performanceContent = document.getElementById("performance-content");
+                  const generalContent = document.getElementById("general-content");
+                
+                  function handleRadioChange() {
+                    if (performanceRadio.checked) {
+                      performanceContent.classList.remove("hidden");
+                      generalContent.classList.add("hidden");
+                    } else if (generalRadio.checked) {
+                      performanceContent.classList.add("hidden");
+                      generalContent.classList.remove("hidden");
+                    }
+                  }
+                
+                  performanceRadio.addEventListener("change", handleRadioChange);
+                  generalRadio.addEventListener("change", handleRadioChange);
+                
+                  // Set default state
+                  handleRadioChange();
+                });
+                </script>
+                
+                <style>
+                .hidden {
+                  display: none;
+                }
+                </style>
+
+
+                
+      </main>
+
+    </section>
+
+
+
+{% endblock %}
+
+

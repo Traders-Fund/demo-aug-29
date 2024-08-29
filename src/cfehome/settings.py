@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-
+    'django.contrib.humanize',
     'authuser',
     'dashboard'
    
@@ -148,5 +148,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
 CSRF_TRUSTED_ORIGINS = ['https://fundhance-demo.up.railway.app']
 
+STRIPE_PUBLISHABLE_KEY = "pk_test_51PCS3dC44EYDQ7lQlWRCEm6PHnhlEOU5qr7Ws1ZnpxzfhQHQ2ds42m7A8ILGGu93Nef3DE3qzHOIVL1EGbIV2v2100OSVwBtHh"
+STRIPE_SECRET_KEY = "sk_test_51PCS3dC44EYDQ7lQut4XcdtcdPPJjJQxIGdUMBXCR6Mzi99LYgQaEEbK1d4qJ7MRG2L2sDqyYV7dEMTGzenSLEdr00IuHin3jX"
+STRIPE_ENDPOINT_SECRET = ""
+STRIPE_WEBHOOK_SECRET = "whsec_8290ee95064fd8c6a722fe8ab547eab6635040e9ac25e2dda15fef457b9b245d"
+
 
 JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS
+
+
+REDIRECT_DOMAIN = 'http://127.0.0.1:8000'
+

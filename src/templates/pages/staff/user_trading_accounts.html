@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="h-screen antialiased bg-gray-50 ">
+    <main class="p-4 pt-32 sm:pt-24 md:ml-64">
+      <h2 class="text-4xl font-extrabold  pb-4">Trading Accounts of {{ selected_user.get_full_name }}</h2>
+      <div class="mb-4">
+        <a href="{% url 'traders_staff' %}" class="px-3 py-2 text-sm cursor-pointer text-center inline-flex items-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg ">
+          <svg class="w-5 h-5 text-gray-600 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4" />
+          </svg>Back
+        </a>
+      </div>
+      <div class="relative overflow-x-auto w-full shadow-md sm:rounded-lg">
+        <table id="trading-accounts-table" class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-200  ">
+            <tr>
+              <th scope="col" class="px-6 py-3">Account Name</th>
+              <th scope="col" class="px-6 py-3">Equity</th>
+              <th scope="col" class="px-6 py-3">Joined at</th>
+              <th scope="col" class="px-6 py-3">Account Type</th>
+              <th scope="col" class="px-6 py-3">Account Status</th>
+              <th scope="col" class="px-6 py-3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for account in trading_accounts %}
+              <tr class="bg-white border-b   hover:bg-gray-50 ">
+                <td class="px-6 py-4">{{ account.account_name }}</td>
+                <td class="px-6 py-4">${{ account.account_equity }}</td>
+                <td class="px-6 py-4">{{ account.evaluation_starts|date:'Y-m-d' }}</td>
+                <td class="px-6 py-4">{{ account.account_type|capfirst }}</td>
+                <td class="px-6 py-4">
+                  <p class="text-xs font-semibold max-w-24 rounded-2xl text-center p-2 
+                  {% if account.account_status == 'active' %}
+                    bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white
+                  {% elif account.account_status == 'pending' %}
+                   bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 text-gray-900
+                  {% elif account.account_status == 'challenge' %}
+                   bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 text-white
+                  {% else %}
+                    bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white  {% endif %}
+                ">{{ account.account_status|capfirst }}</p>
+                </td>
+                <td class="px-6 py-4 text-right">
+                
+                  <button data-modal-target="modal-{{ account.id }}" data-modal-toggle="modal-{{ account.id }}" class="inline-flex items-center p-2 mr-2 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-purple-300 ">
+                    <svg class="w-3.5 h-3.5 me-1 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
+                    </svg>Actions
+                  </button>
+                
+                  <div id="modal-{{ account.id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                    
+                      <div class="relative bg-white rounded-lg shadow ">
+                     
+                        <div class="flex items-center justify-between p-4 border-b rounded-t ">
+                          <h3 class="text-base font-semibold text-gray-900 ">Account name - {{ account.account_name }} (ID:{{ account.id }})</h3>
+                          <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center " data-modal-hide="modal-{{ account.id }}">
+                            <svg class="w-6 h-6 text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                            </svg>
+                          </button>
+                        </div>
+                 
+                        <div class="p-6">
+               
+                          <div class="flex space-x-2 mb-4">
+                 
+                            <p class="text-xs font-semibold max-w-24 rounded-2xl text-center p-2 
+                            {% if account.account_status == 'active' %}
+                              bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white
+                            {% elif account.account_status == 'pending' %}
+                             bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 text-gray-900
+                            {% elif account.account_status == 'challenge' %}
+                             bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 text-white
+                            {% else %}
+                              bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white  {% endif %}
+                          ">{{ account.account_status|capfirst }}</p>
+                          </div>
+                  
+                          
+                          <li class="flex flex-col gap-1 items-start justify-center">
+                            <ul class="flex justify-start pb-1 items-center gap-1">
+                              <p>Program name:</p><strong>{{ account.account_type|capfirst }} {{ account.account_equity }}$</strong>
+                            </ul>
+                            <ul class="flex justify-start items-center pb-1 gap-1">
+                              <p>Equity:</p><strong>{{ account.account_equity }}$</strong>
+                            </ul>
+                            <ul class="flex justify-start items-center gap-1">
+                              Pending payout?<p class="text-red-400 font-extrabold mr-4 cursor-pointer">YES</p> <strong class="flex text-violet-500 cursor-pointer items-center justify-center">
+                                See<svg class="w-4 h-4 text-violet-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 4h4m0 0v4m0-4-5 5M8 20H4m0 0v-4m0 4 5-5" />
+                                </svg>
+                              </strong>
+                            </ul>
+                          </li>
+                        </div>
+                  
+                        <!-- Modal footer -->
+                        <div class="p-6 flex-col gap-2 border-t w-full border-gray-200 rounded-b ">
+                          <form method="post" action="{% url 'suspend_account' account.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="text-white mb-2   bg-gradient-to-r from-red-400 via-red-500 to-red-600 focus:ring-4 w-full focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Suspend user</button>
+                          </form>
+                          <button type="button" class="w-full px-5 py-2.5 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-purple-300">Upgrade</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="5" class="px-6 py-4 text-center text-gray-500 ">No trading accounts found for this user.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </section>
+{% endblock %}

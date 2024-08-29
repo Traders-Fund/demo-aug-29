@@ -1,5 +1,6 @@
 .DS_Store
 local-cdn/
+virt/
 
 # Logs
 logs

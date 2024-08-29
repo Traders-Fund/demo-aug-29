@@ -157,5 +157,5 @@ STRIPE_WEBHOOK_SECRET = "whsec_8290ee95064fd8c6a722fe8ab547eab6635040e9ac25e2dda
 JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS
 
 
-REDIRECT_DOMAIN = 'http://127.0.0.1:8000'
-
+#REDIRECT_DOMAIN = 'http://127.0.0.1:8000'
+REDIRECT_DOMAIN =  'https://fundhance-demo.up.railway.app/account_overview/'

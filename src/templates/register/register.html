@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% load static %}
+
+  <section class="bg-gray-100 overflow-auto h-screen isolate">
+    <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]" aria-hidden="true">
+      <div class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+    <div class="flex w-full flex-col items-center justify-center sm:px-6 my-10 mx-auto max-w-4xl md:h-screen lg:py-0">
+      <div class="flex flex-col m-3 items-center">
+        <a href="#" class="flex items-center text-2xl font-semibold text-gray-900 "><img class="w-16 h-16 mr-2" src="{% static 'brand/logoSidebar.png' %}" alt="logo" /></a>
+        <h3 class="strong font-bold text-neutral-800 text-2xl">Create a free account</h3>
+        <span class="text-sm pt-1">Already have an account? <a class="text-violet-600" href="{% url 'login' %}">Login here</a></span>
+      </div>
+      <div class="w-full max-w-lg bg-white border border-neutral-100 rounded-lg shadow-lg md:mt-0 sm:max-w-full xl:p-0">
+        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <form method="POST" action="" class="space-y-4 md:space-y-6">
+            {% csrf_token %}
+            {% if form.errors %}
+              <div class="p-4 mb-4 text-sm text-yellow-700 bg-yellow-100 rounded-lg  col-span-full" role="alert">
+                Your Form Has Errors{% for field in form %}
+                  {% if field.errors %}
+                    {{ field.errors }}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <!-- Step 1 -->
+            <div id="step1" class="step-form">
+              <div class="mb-3">
+                <label for="{{ form.email.id_for_label }}" class="block mb-1 text-sm font-medium text-gray-700 ">Email</label>
+                {{ form.email }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.first_name.id_for_label }}" class="block mb-1 text-sm font-medium text-gray-700 ">First Name</label>
+                {{ form.first_name }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.last_name.id_for_label }}" class="block mb-1 text-sm font-medium text-gray-700 ">Last Name</label>
+                {{ form.last_name }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.phone_number.id_for_label }}" class="block mb-1 text-sm font-medium text-gray-700 ">Phone Number</label>
+                {{ form.phone_number }}
+              </div>
+              <div class="mb-9">
+                <label for="{{ form.address.id_for_label }}" class="block mb-1 text-sm font-medium text-gray-700 ">Address</label>
+                {{ form.address }}
+              </div>
+              <div class="flex justify-end">
+                <a href="javascript:void(0);" id="next1" class="flex items-center shadow-lg justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 ">
+                  Next<svg class="w-6 h-6 text-gray-500 -me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div id="step2" class="step-form hidden">
+              <div class="mb-3">
+                <label for="{{ form.city.id_for_label }}" class="block mb-1 text-sm font-medium text-gray-700 ">City</label>
+                {{ form.city }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.state.id_for_label }}" class="block mb-1 text-sm font-medium text-gray-700 ">State</label>
+                {{ form.state }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.postcode.id_for_label }}" class="block mb-1 text-sm font-medium text-gray-700 ">Postcode</label>
+                {{ form.postcode }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.password1.id_for_label }}" class="block mb-1 text-sm font-medium text-gray-700 ">Password</label>
+                {{ form.password1 }}
+                {% if form.password1.help_text %}
+                  <div class="text-sm text-gray-500 ">{{ form.password1.help_text|safe }}</div>
+                {% endif %}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.password2.id_for_label }}" class="block mb-1 text-sm font-medium text-gray-700 ">Confirm Password</label>
+                {{ form.password2 }}
+                {% if form.password2.help_text %}
+                  <div class="text-sm text-gray-500 ">{{ form.password2.help_text|safe }}</div>
+                {% endif %}
+              </div>
+
+              <div class="flex items-start mb-4 col-span-full">
+                <div class="flex items-center h-5">
+                  <input id="terms" aria-describedby="terms" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 " required="" />
+                </div>
+                <div class="ml-3 text-sm">
+                  <label for="terms" class="font-light text-gray-500 ">I accept the <a class="font-medium text-primary-600 hover:underline " href="#">Terms and Conditions</a></label>
+                </div>
+              </div>
+
+              <div class="flex justify-between">
+                <a href="javascript:void(0);" id="previous1" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 shadow-lg  rounded-lg hover:bg-gray-100 hover:text-gray-700 ">
+                  <svg class="w-6 h-6 text-gray-500 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4" />
+                  </svg>Previous
+                </a>
+                <button type="submit" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gradient-to-br from-purple-600 to-blue-500 shadow-lg hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg">Create an account</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('next1').addEventListener('click', function () {
+      document.getElementById('step1').classList.add('hidden')
+      document.getElementById('step2').classList.remove('hidden')
+    })
+    
+    document.getElementById('previous1').addEventListener('click', function () {
+      document.getElementById('step1').classList.remove('hidden')
+      document.getElementById('step2').classList.add('hidden')
+    })
+  </script>
+{% endblock %}

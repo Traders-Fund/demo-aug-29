@@ -158,4 +158,4 @@ JAZZMIN_UI_TWEAKS = JAZZMIN_UI_TWEAKS
 
 
 #REDIRECT_DOMAIN = 'http://127.0.0.1:8000'
-REDIRECT_DOMAIN =  'https://fundhance-demo.up.railway.app/account_overview/'
+REDIRECT_DOMAIN =  'https://fundhance-demo.up.railway.app/account_overview'

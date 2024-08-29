@@ -26,5 +26,6 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('email',)
 
-admin.site.register(User, UserAdmin)
+
+admin.site.register(User, UserAdmin, name="Create a new user here")
 admin.site.unregister(Group)

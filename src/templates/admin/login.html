@@ -5,73 +5,70 @@
 {% get_jazzmin_ui_tweaks as jazzmin_ui %}
 
 {% block content %}
-    <p class="login-box-msg">Welcome to the FundHance's Admin Panel</p>
-    <form action="{{ app_path }}" method="post">
-        {% csrf_token %}
-        {% if user.is_authenticated %}
-            <p class="errornote">
-                <div class="callout callout-danger">
-                    <p>
-                        {% blocktrans trimmed %}
-                            You are authenticated as {{ username }}, but are not authorized to
-                            access this page. Would you like to login to a different account?
-                        {% endblocktrans %}
-                    </p>
-                </div>
-            </p>
-        {% endif %}
-        {% if form.errors %}
-            {% if form.username.errors %}
-                <div class="callout callout-danger">
-                    <p>{{ form.username.label }}: {{ form.username.errors|join:', ' }}</p>
-                </div>
-            {% endif %}
-            {% if form.password.errors %}
-                <div class="callout callout-danger">
-                    <p>{{ form.password.label }}: {{ form.password.errors|join:', ' }}</p>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <p class="login-box-msg fadeIn first">Welcome to FundHance's Admin Panel</p>
+        
+        <form action="{{ app_path }}" method="post">
+            {% csrf_token %}
+            
+            {% if user.is_authenticated %}
+                <div class="fadeIn first">
+                    <div class="callout callout-danger">
+                        <p>
+                            {% blocktrans trimmed %}
+                                You are authenticated as {{ username }}, but are not authorized to
+                                access this page. Would you like to login to a different account?
+                            {% endblocktrans %}
+                        </p>
+                    </div>
                 </div>
             {% endif %}
-            {% if form.non_field_errors %}
-                <div class="callout callout-danger">
-                    {% for error in form.non_field_errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
+            
+            {% if form.errors %}
+                <div class="fadeIn first">
+                    {% if form.username.errors %}
+                        <div class="callout callout-danger">
+                            <p>{{ form.username.label }}: {{ form.username.errors|join:', ' }}</p>
+                        </div>
+                    {% endif %}
+                    {% if form.password.errors %}
+                        <div class="callout callout-danger">
+                            <p>{{ form.password.label }}: {{ form.password.errors|join:', ' }}</p>
+                        </div>
+                    {% endif %}
+                    {% if form.non_field_errors %}
+                        <div class="callout callout-danger">
+                            {% for error in form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
             {% endif %}
-        {% endif %}
-        <div class="mb-3 input-group">
-            <input type="text" name="username" class="form-control" placeholder="{{ form.username.label }}" required>
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-user"></span>
-                </div>
+            
+            <div class="fadeIn second">
+                <input type="text" style="border-radius: 0.2rem;" name="username" id="login" class="form-control mb-2  fadeIn second" placeholder="{{ form.username.label }}" required>
             </div>
-        </div>
-        <div class="mb-3 input-group">
-            <input type="password" name="password" class="form-control" placeholder="{{ form.password.label }}" required>
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
-                </div>
+            
+            <div class="fadeIn third">
+                <input type="password" name="password" id="password" style="border-radius: 0.2rem;" class="form-control mb-2 fadeIn third" placeholder="{{ form.password.label }}" required>
             </div>
-        </div>
+            
+            <div class="fadeIn fourth">
+                <button type="submit" style="border-radius: 0.2rem;" class="fadeIn fourth btn btn-dark btn-block">{% trans "Log in" %}</button>
+            </div>
+        </form>
+        
         {% url 'admin_password_reset' as password_reset_url %}
         {% if password_reset_url %}
-            <div class="mb-3">
-                <div class="password-reset-link" style="text-align: center;">
-                    <a href="{{ password_reset_url }}">
-                        {% trans 'Forgotten your password or username?' %}
-                    </a>
-                </div>
+            <div id="formFooter" class="fadeIn fourth">
+                <a class="underlineHover" href="{{ password_reset_url }}">
+                    {% trans 'Forgotten your password or username?' %}
+                </a>
             </div>
         {% endif %}
-        <div class="row">
-            <div class="col-12">
-                <button type="submit"  class="btn btn-dark btn-block">
-                    {% trans "Log in" %}
-                </button>
-            </div>
-        </div>
-    </form>
-   
+    </div>
+</div>
 {% endblock %}

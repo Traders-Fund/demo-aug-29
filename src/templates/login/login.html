@@ -9,9 +9,9 @@
       <div class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
     </div>
     <div class="flex flex-col m-3 items-center">
-      <a href="#" class="flex items-center text-2xl font-semibold text-gray-900 "><img class="w-16 h-16 mr-2" src="{% static 'brand/logoSidebar.png' %}" alt="logo" /></a>
-      <h3 class="strong font-bold text-neutral-800 text-2xl">Sign in to your account</h3>
-      <span class="text-sm pt-1">Don't have an account? <a class="text-violet-600" href="{% url 'register' %}">Sign up here</a></span>
+      <a href="#" class="flex items-center text-2xl font-semibold text-gray-900 "><img class="w-24 h-24 mb-3 mr-2" src="{% static 'brand/logoSidebar.png' %}" alt="logo" /></a>
+      <h3 class="strong font-bold text-neutral-800 text-center text-2xl">Sign in to your account</h3>
+      <span class="text-sm pt-1">Don't have an account? <a class="text-indigo-700" href="{% url 'register' %}">Sign up here</a></span>
     </div>
     <div class="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -37,21 +37,26 @@
           {% endif %}
           <div>
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
-            <input type="text" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-primary-600 block w-full p-2.5  focus:ring-violet-600   focus:border-violet-400" required />
+            <input type="text" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-primary-600 block w-full p-2.5  focus:ring-indigo-700   focus:border-violet-400" required />
           </div>
           <div>
             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-            <input type="password" name="password" id="password"  class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-violet-600 focus:border-violet-600 block w-full p-2.5   " required />
+            <input type="password" name="password" id="password"  class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-indigo-700 focus:border-indigo-700 block w-full p-2.5   " required />
           </div>
           <div class="flex items-center justify-between">
             
             <a href="#" class="text-sm font-medium text-primary-600 hover:underline ">Forgot password?</a>
           </div>
-          <button type="submit" class="w-full p-2 mr-2 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none shadow-lg  focus:ring-purple-300">Sign in</button>
-         
+          <button type="submit" class="w-full p-2 mr-2 text-sm font-medium text-center text-white rounded-lg bg-gradient-to-br from-[#490ef4] to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none shadow-lg focus:ring-[#490ef4]">Sign in</button>
+
         </form>
       </div>
     </div>
+
+    <div class="absolute inset-x-0 top-[10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[20rem]" aria-hidden="true">
+      <div class="relative left-1/2 -z-10 aspect-[1155/460] overflow-hidden w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:right-[calc(50%-5rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
   </div>
+
 </section>
 {% endblock content %}

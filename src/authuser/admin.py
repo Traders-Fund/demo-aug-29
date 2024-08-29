@@ -9,8 +9,16 @@ class UserAdmin(BaseUserAdmin):
     form = CustomUserChangeForm
     add_form = CustomUserCreationForm
 
-    list_display = ('email', 'first_name', 'last_name', 'is_staff')
-    list_filter = ('is_staff', 'is_superuser', 'is_active')
+    # Define a method to get the full name
+    def full_name(self, obj):
+        return f"{obj.first_name} {obj.last_name}"
+    
+    # Set the short_description attribute for the column name in the admin interface
+
+
+    # Add 'full_name' to the list_display
+    list_display = ('email', 'full_name', 'date_joined', 'is_staff')
+    list_filter = ('email', 'is_staff')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name', 'phone_number', 'address', 'city', 'state', 'postcode')}),

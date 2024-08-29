@@ -1,0 +1,13 @@
+{% extends "registration/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+    <p class="login-box-msg">See you next time</p>
+    <p >
+     Thanks for spending some quality time with FundHance.
+    </p>
+    <a class="btn btn-dark" id="mycolor-btn" style="width: 100%;" href="{% url 'admin:index' %}">
+        {% trans 'Log in' %}
+    </a>
+{% endblock %}
